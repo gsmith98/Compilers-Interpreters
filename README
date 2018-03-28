@@ -1,0 +1,34 @@
+Graham Smith
+gsmith98@jhu.edu
+
+Assignment 8 Design=====================================
+
+I went for the full 50 points in Language Options (implemented Local Variables,
+Results, Parameters, Recursion, and 'Rest') and I went for 30 points in 
+Implementation Options: I only added procedure functionality to the interpreter,
+not the code generators. If no errors are found, it should total 80 points.
+
+RUN CODE WITH -i ONLY, not -x or whatever.
+
+I added full procedure functionality to the compiler stages up to and including
+the interpretter. For the Scanner, the only change was the addition of 2 keywords:
+PROCEDURE and RETURN.
+
+For the parser, I had to add a procedure entry. I made 2 kinds for functions vs
+procedures. each has a local scope and potentially instructions and a return
+expression. The recursive descent parser works much as before. ProcDecl makes
+an entry for any procedure while Call makes nodes for them. As with entries, there
+are 2 kinds of nodes for functions/procedures. Nodes have a list of actuals (could
+be empty) and a procedure entry (return expression and instrs can be reached through
+the Node's entry). The LL1 conflicts are resolved by looking in the symbol table
+to see whther or not the identifier is a procedure.
+
+The interpretter now has 2 new nodes it can operate on, the 2 kinds of procedures.
+both cases are very similar. In either case, the actuals are evaluated and temporarily
+stored before we create a new Environment object for the local procedure scope. The global
+scope is saved at all times, and the scope immediately outside the current one (recursion)
+is temporarily saved. Boxes are made in the new environment and the previously evaluated
+actuals are then stored in them either by value or reference as is appropriate (it's
+a bit inaccurate to say the references are stored in the boxes. rather the references to boxes
+replace the boxes in the target environment.) Then in either case the instructions are executed.
+If after that the call is a function, the return expression is evaluated and put on the stack. 
