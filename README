@@ -1,3 +1,11 @@
+This is the final submission for the Spring 2013 Compilers & Interpreters course taught at JHU by Peter Froehlich. 
+
+Throughout 8 total submissions I incrementally built a codebase for compiling/interpreting code written in a custom LL1 language called Simple to MIPS assembly. 
+
+The original README is below. It focuses a little more on what was changed since the penultimate submission but should give some insight into how the codebase works.
+
+
+
 Graham Smith
 gsmith98@jhu.edu
 
